@@ -2,17 +2,24 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ExampleTest extends TestCase
+class BookTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
-     * A basic test example.
-     *
-     * @return void
+     * @test
      */
-    public function testBasicTest()
+    public function a_book_can_be_added_to_the_library()
     {
-        $this->assertTrue(true);
+        $this->withoutExceptionHandling();
+        
+        $response = $this->post('/books', $this->data());
+
+        $book = Book::first();
+
+        $this->assertCount(1, Book::all());
     }
 }
