@@ -12,4 +12,15 @@ class Book extends Model
      * @var array
      */
     protected $guarded = [];
+    
+    /**
+     * path to show book
+     *
+     * @return void
+     */
+    public function path()
+    {
+        return '/books/' . $this->id;
+    }
+
 }

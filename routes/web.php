@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,5 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('authors/create','Authorcontroller@create');
+Route::post('authors','Authorcontroller@store');
+
 Route::get('books','BookController@index');
 Route::post('books','BookController@store');
+Route::patch('books/{book}','BookController@update');

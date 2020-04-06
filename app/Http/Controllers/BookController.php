@@ -15,13 +15,28 @@ class BookController extends Controller
     public function store()
     {
         $book = Book::create($this->validateData());
-        return view('books', compact('book'));
+
+        return redirect($book->path());
+    }
+    
+    /**
+     * update book
+     *
+     * @param  mixed $book
+     * @return void
+     */
+    public function update(Book $book)
+    {
+        $book->update($this->validateData());
+
+        return redirect($book->path());
     }
 
     protected function validateData()
     {
         return request()->validate([
-            'title' => 'required'
+            'title' => 'required',
+            'author_id' => 'required'
         ]);
     }
 }
